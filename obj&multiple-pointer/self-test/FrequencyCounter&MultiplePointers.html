@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequency Counter / Multiple Pointers - areThereDuplicates</title>
+</head>
+<body>
+  <div>
+    <p>Implement a function called, areThereDuplicates which accepts a variable number of arguments, </p>
+    <p>가변 개수의 인수를 허용하는 areThereDuplicates라는 함수를 구현합니다.</p>
+  </div>
+  <div>
+    <p>and checks whether there are any duplicates among the arguments passed in.  </p>
+    <p>전달된 인수 중 중복이 있는지 확인합니다.</p>
+  </div>
+  <div>
+    <p>You can solve this using the frequency counter pattern OR the multiple pointers pattern.</p>  
+    <p>frequency counter패턴 또는 multiple pointers패턴을 사용하여 이 문제를 해결할 수 있습니다</p>
+  </div>
+
+<dl>
+  <dt>Examples:</dt>
+  <dd>areThereDuplicates(1, 2, 3) // false</dd>
+  <dd>areThereDuplicates(1, 2, 2) // true </dd>
+  <dd>areThereDuplicates('a', 'b', 'c', 'a') // true </dd>
+</dl>
+<dl>
+  <dt>Restrictions(제한):</dt>
+  <dd>Time - O(n)</dd>
+  <dd>Space - O(n)</dd>
+</dl>
+<dl>
+  <dt>Bonus:</dt>
+  <dd>Time - O(n log n)</dd>
+  <dd>Space - O(1)</dd>
+</dl>
+
+</body>
+<script>
+  
+ /*
+  0. 문제파악 
+  1. 구체적인 예시 (에러패턴, 유효하지 않은 패턴)
+  2. 문제를 세분화 (*주석*)
+  3. 어려운 문제가 있으면 일단 건너뛰고, 간단한 문제부터 해결
+  4. 완성되면 리펙토링
+ */
+
+ /*
+  areThereDuplicates(1, 2, 3) // false
+  areThereDuplicates(1, 2, 2) // true 
+  areThereDuplicates('a', 'b', 'c', 'a') // true 
+  */
+
+
+// frequency counter S
+function putObjBasket (data) {
+  const obj = {};
+  for(let i = 0; i < data.length; i++) {
+    
+      if(obj[data[i]] === undefined) obj[data[i]] = 1;
+      else {
+        console.log(obj[data[i]])
+        obj[data[i]] = obj[data[i]] + 1;
+      }
+    }
+    console.log(obj);
+  return obj;
+ }
+
+ function areThereDuplicates() {
+  // arguments 를 obj 에 담는다 
+  const obj = putObjBasket(arguments);
+  console.log(obj)
+  for( const key in obj) {
+    // if: value 중에 카운트된 수가 1이 넘으면 중복 되는 인수판단으로 return true
+    if(obj[key] > 1) return true;
+  }
+  
+  // 위에서 true가 되지않으면 return false
+  return false;
+}
+// frequency counter E
+
+
+// MultiplePointer S
+function areThereDuplicatesMultiplePointer(...args) {
+  args.sort();
+  let index1 = 0;
+  for(let index2 = 1;index2 < args.length; index2++) {
+    if(args[index1] == args[index2]) {
+      return true;
+    }
+    index1++;
+    index2++;
+  }
+  return false
+}
+// MultiplePointer E
+
+// MultiplePointer 2 S
+function areThereDuplicatesMultiplePointer_02(...args) {
+  // Two pointers
+  args.sort();
+  let start = 0;
+  let next = 1;
+  while(next < args.length){
+    if(args[start] === args[next]){
+        return true
+    }
+    start++
+    next++
+  }
+  return false
+}
+// MultiplePointer 2 E
+
+function areThereDuplicates_02() {
+  // new Set().add(같은건 받지않는다);
+  return new Set(arguments).size !== arguments.length;
+}
+
+console.log(
+  'frequency counter S\n',
+  areThereDuplicates(1, 2, 2),
+  areThereDuplicates(1, 2, 3, null, undefined),
+  areThereDuplicates('a', 'b', 'c', 'a'),
+  '\frequency counter E'
+)
+console.log(
+  'areThereDuplicates One Liner S\n',
+  areThereDuplicates_02(1, 2, 2),
+  areThereDuplicates_02(1, 2, 3, null, undefined),
+  areThereDuplicates_02('a', 'b', 'c', 'a'),
+  '\areThereDuplicates One Liner E'
+)
+
+console.log(
+  'MultiplePointer S\n',
+  areThereDuplicatesMultiplePointer(1, 2, 2),
+  areThereDuplicatesMultiplePointer(1, 2, 3, null, undefined),
+  areThereDuplicatesMultiplePointer('a', 'b', 'c', 'a'),
+  '\MultiplePointer E'
+)
+console.log(
+  'MultiplePointer 02 S\n',
+  areThereDuplicatesMultiplePointer(1, 2, 2),
+  areThereDuplicatesMultiplePointer(1, 2, 3, null, undefined),
+  areThereDuplicatesMultiplePointer_02('a', 'b', 'c', 'a'),
+  '\MultiplePointer 02 E'
+);
+
+</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>factorial</title>
+</head>
+<body>
+  <p>  
+    Write a function factorial which accepts a number and returns the factorial of that number.   <br/>
+    A factorial is the product of an integer and all the integers below it; e.g.,    <br/>
+    factorial four ( 4! ) is equal to 24, because 4 * 3 * 2 * 1 equals 24.  factorial zero (0!) is always 1.
+  </p>
+  <p>
+    factorial 함수를 작성 해보자, factorial(7) => (7 * 6 * 5 * 4 * 3 * 2 * 1 )
+  </p>
+  <script>
+    /*
+    0. 문제파악 
+    1. 구체적인 예시 (에러패턴, 유효하지 않은 패턴)
+    2. 문제를 세분화 (*주석*)
+    3. 어려운 문제가 있으면 일단 건너뛰고, 간단한 문제부터 해결
+    4. 완성되면 리펙토링
+    */
+
+    //factorial(1) // 1
+    // factorial(2) // 2
+    // factorial(4) // 24
+    // factorial(7) // 5040
+
+    const factorial = (num) => {
+      if(num === 1) return 1;
+      return num * factorial(num - 1)
+    }
+
+    console.log(
+    factorial(1) ,// 1
+     factorial(2), // 2
+     factorial(4), // 24
+     factorial(7), // 5040
+    )
+  </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fib</title>
+</head>
+<body>
+  <p>  
+    Write a recursive function called fib which accepts a number and returns the nth number in the Fibonacci sequence.   </br>
+    Recall that the Fibonacci sequence is the sequence of whole numbers 1, 1, 2, 3, 5, 8, ... which starts with 1 and 1,   </br>
+    and where every number thereafter is equal to the sum of the previous two numbers.
+  </p>
+  <p>
+    Write a recursive function called fib which accepts a number and returns the nth number in the Fibonacci sequence.   </br>
+    Recall that the Fibonacci sequence is the sequence of whole numbers 1, 1, 2, 3, 5, 8, ... which starts with 1 and 1,   </br>
+    and where every number thereafter is equal to the sum of the previous two numbers.
+  </p>
+  <script>
+    /*
+    0. 문제파악 
+    1. 구체적인 예시 (에러패턴, 유효하지 않은 패턴)
+    2. 문제를 세분화 (*주석*)
+    3. 어려운 문제가 있으면 일단 건너뛰고, 간단한 문제부터 해결
+    4. 완성되면 리펙토링
+    */
+
+    // fib(4) // 3
+    // fib(10) // 55
+    // fib(28) // 317811
+    // fib(35) // 9227465
+    function fibLoop(num){
+      let last1 = 1;
+      let last2 = 1;
+      let result = 0;
+
+      for(let i = 1; i < num; i++) {
+        result = last1 + last2;
+        last1 = last2;
+        last2 = result;
+      }
+      return result;
+    }
+
+    console.log(
+      fibLoop(3) ,// 3
+      // fib(10), // 55
+      // fib(28), // 317811
+      // fib(35), // 9227465
+    )
+
+    function fib(n){
+      if (n <= 2) return 1;
+      return fib(n-1) + fib(n-2);
+    }
+  </script>
+</body>
+</html>

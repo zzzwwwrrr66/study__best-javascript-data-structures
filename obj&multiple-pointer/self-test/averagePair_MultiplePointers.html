@@ -1,0 +1,71 @@
+
+
+
+
+Bonus Constraints:
+
+Time: O(N)
+
+Space: O(1)
+
+Sample Input:
+
+averagePair([1,2,3],2.5) // true
+averagePair([1,3,3,5,6,7,10,12,19],8) // true
+averagePair([-1,0,3,4,5,6], 4.1) // false
+averagePair([],4) // false
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiple Pointers - averagePair</title>
+</head>
+<body>
+  <p>Write a function called averagePair. <br/>
+    Given a sorted array of integers and a target average, <br/>
+    determine if there is a pair of values in the array where the average of the pair equals the target average. <br/>
+    There may be more than one pair that matches the average target.</p>
+  <p>AveragePair 의 함수를 작성<br/>
+    정렬된 양수들의 배열과 타갯의 평균이 주어지면,<br/>
+    배열값 2개의 평균이 2번째 인수값의 평균과 같은 값이 되는지 확인합니다.<br/>
+    2번째 인수값인 평균 목표와 일치하는 쌍이 두 개 이상 있을 수 있습니다.</p>
+  <p>
+    Bonus Constraints: <br/>
+    Time: O(N) <br/>
+    Space: O(1) 
+  </p>
+  <p>
+    Sample Input: <br/>
+    averagePair([1,2,3],2.5) // true <br/>
+    averagePair([1,3,3,5,6,7,10,12,19],8) // true <br/>
+    averagePair([-1,0,3,4,5,6], 4.1) // false <br/>
+    averagePair([],4) // false 
+  </p>
+
+  <script>
+    function averagePair(arr, average){
+      let left = 0;
+      let right = arr.length - 1;
+      while(left < right) {
+        let aver = (arr[left] + arr[right]) / 2;
+        if(aver === average) {
+          return true;
+        } else if (aver < average) { // 정렬된 숫자들이기 때문에 average 가 더작으면 계산할 필요가 없어진다
+          left++
+        } else {
+          right--;
+        }
+      }
+      return false
+    }
+
+    console.log(
+      'wooram average check : ', 
+      averagePair([1,3,3,5,6,7,10,12,19],8)
+    )
+  </script>
+</body>
+</html>

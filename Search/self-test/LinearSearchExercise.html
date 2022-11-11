@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinearSearchExercise</title>
+</head>
+<body>
+
+  Write a function called linearSearch which accepts an array and a value, and returns the index at which the value exists. If the value does not exist in the array, return -1.
+
+Don't use indexOf to implement this function!
+
+Examples:
+
+linearSearch([10, 15, 20, 25, 30], 15) // 1
+linearSearch([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 4) // 5
+linearSearch([100], 100) // 0
+linearSearch([1,2,3,4,5], 6) // -1
+linearSearch([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 10) // -1
+linearSearch([100], 200) // -1
+
+
+  <script>
+    const arr = ['a', 'b', 'c'];
+    const arr2 = [3,4,,5,6,7,8];
+    const indexOf = (arr, val) => {
+      if(arr.length === 0) return false;
+
+      let result;
+      for(let i = 0; i < arr.length; i++) {
+        if(arr[i] === val) return result = i
+        else {
+          result = -1
+        };
+      }
+
+      return result;
+    }
+    console.log(
+      indexOf([10, 15, 20, 25, 30], 15), // 1
+      indexOf([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 4), // 5
+      indexOf([100], 100) ,// 0
+      indexOf([1,2,3,4,5], 6), // -1
+      indexOf([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 10) ,// -1
+      indexOf([100], 200) // -1
+    )
+  </script>
+</body>
+</html>

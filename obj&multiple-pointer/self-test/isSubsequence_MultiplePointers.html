@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiple Pointers - isSubsequence</title>
+</head>
+<body>
+  <p>Write a function called isSubsequence which takes in two strings and checks whether the characters in the first string form a subsequence of the characters in the second string. </br>
+    In other words, the function should check whether the characters in the first string appear somewhere in the second string, without their order changing.</p>  
+  <p>
+    두 개의 문자열을 받아서 첫 번째 문자열의 문자가 두 번째 문자열의 문자의 하위 시퀀스를 형성하는지 확인하는 isSubsequence라는 함수를 작성하세요.  </br>
+    즉, 함수는 첫 번째 문자열의 문자가 순서를 변경하지 않고 두 번째 문자열의 어딘가에 나타나는지 확인해야 합니다.
+  </p>
+
+  <p>
+    Examples: </br>
+  isSubsequence('hello', 'hello world'); // true  </br>
+  isSubsequence('sing', 'sting'); // true  </br>
+  isSubsequence('abc', 'abracadabra'); // true  </br>
+  isSubsequence('abc', 'acb'); // false (order matters)  </br>
+  </p>
+
+    <p>
+      Your solution MUST have AT LEAST the following complexities:  </br>
+
+      Time Complexity - O(N + M)  </br>
+      Space Complexity - O(1)
+    </p>
+
+
+  <script>
+  /*
+    0. 문제파악 
+    1. 구체적인 예시 (에러패턴, 유효하지 않은 패턴)
+    2. 문제를 세분화 (*주석*)
+    3. 어려운 문제가 있으면 일단 건너뛰고, 간단한 문제부터 해결
+    4. 완성되면 리펙토링
+  */
+  
+  
+  
+  // 
+  // if index1 === index2 => index1++; index2++
+  
+
+    function isSubsequence (v1, v2) {
+      // string 만 받는다 
+      if(typeof v1 !== 'string' && typeof v2 !== 'string') return;
+
+      // trim()
+      const string1 = v1.trim();
+      const string2 = v2.trim();
+
+      // for 2번째 인수 length 만큼, index1 = 0; index2=1
+      let index1 = 0;
+      let index2 = 0;
+      // index1이 자신의 length 만큼 왔을때까지 
+      while (index2 < string2.length) {
+        if(string1[index1] === string2[index2]) index1++;
+        if(index1 === string1.length) return true
+        index2++
+      }
+      return false;
+    }
+
+    console.log(
+      isSubsequence('abc', 'abracadabra'),
+      isSubsequence('hello', 'hello world'),
+      isSubsequence('sing', 'sting'),
+      isSubsequence('abc', 'acb')
+    );
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

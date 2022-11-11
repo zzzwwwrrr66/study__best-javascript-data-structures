@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>multiple pointers! left and right 이진 탐색 알고리즘 - 순환 형태</title>
+</head>
+<body>
+  <p>두개의 인덱스 포인트를 이영해서 두 value 의 합이 0 인 2개의 value 값을 찾는다 </p>
+  <p>배열안의 두 value 값중에 합이 0 이 되는 two value 들을 찾는다</p>
+  <script>
+    // multiple_pointers { O(n) 사용 }
+    // # index 포인터를 두개로 두면서 값들을 확인한다 
+    // 중첩 for을 사용하지 않으면서 O(n) 만으로 검색을 끝낼수 있다 
+    // 1. index 포인터를 처음과 끝에 두고 while(left < right ) 이면 중단한다
+    // left++ 조건과, right-- 조건이 따로 존재해야한다 
+
+
+    // 배열 을 돌면서 합이 0 이 되는 두 배열값을 리턴한다 
+    function multiplePointers(numArr) {
+      if(numArr.length === 0) return;
+      const resultArr = [];
+
+      // index 포인터 2개를둔다 left, right 
+      let leftIndex = 0;
+      let rightIndex = (numArr.length) - 1;
+      // left < right 가 커질떄 loop를 중단한다
+      while (leftIndex < rightIndex) {
+        // 값이 number 가 아닐때 리턴
+        if(typeof numArr[leftIndex] !== 'number' || typeof numArr[rightIndex] !== 'number') return;
+        
+        if(numArr[leftIndex] + numArr[rightIndex] === 0) { // if 2개의 벨류의 합이 0 이면 
+          // numArr에서 벨류를 빼주고 result에 담는다
+          resultArr.push(  
+            numArr.splice(leftIndex, 1)[0], 
+            numArr.splice((rightIndex - 1), 1)[0]
+          );
+          // leftIndex 는 0처리, numArr에서 값을 마이너스하므로 다시 맨끝 인덱스를 정해준다
+          leftIndex = 0;
+          rightIndex = (numArr.length) - 1;
+        }
+        // if 0 보다 아래이면 left숫자 증가
+        if((numArr[leftIndex] + numArr[rightIndex]) < 0) {
+          leftIndex = leftIndex + 1
+        }
+        // if 0보다 크면 right 숫자빼기
+        if((numArr[leftIndex] + numArr[rightIndex]) > 0) {
+          rightIndex = rightIndex - 1;
+        }
+      }
+      console.log(resultArr);
+      return resultArr;
+    } 
+
+    multiplePointers([-1,-2,-3,0,2,24,null]);
+    multiplePointers([-1,-2,-3,0,2,24,1]);
+  </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>power</title>
+</head>
+<body>
+  <p>
+  Write a function called power which accepts a base and an exponent.   <br/>
+  The function should return the power of the base to the exponent.    <br/>
+  This function should mimic the functionality of Math.pow()  - do not worry about negative bases and exponents.
+  </p>
+  <p>
+    1번쨰 인수를 2번째 인수 만큼 제곱하는 pow 라는 재귀함수를 만들자   <br/>
+    Math.pow() 를 흉내내는 함수이고, 마이너스는 생각할 필요 없다
+  </p>
+  <script>
+    /*
+    0. 문제파악 
+    1. 구체적인 예시 (에러패턴, 유효하지 않은 패턴)
+    2. 문제를 세분화 (*주석*)
+    3. 어려운 문제가 있으면 일단 건너뛰고, 간단한 문제부터 해결
+    4. 완성되면 리펙토링
+    */
+
+
+    // power(2,0) // 1
+    // power(2,2) // 4
+    // power(2,4) // 16
+
+
+    /* 
+    function power(...args){
+      [a, b] = args;
+
+      if( b === 0 ) return 1;
+
+      let result = 1;
+      function recursion(a, b) {
+        debugger
+        if(b === 0) return result;
+        result = result * a;
+        recursion(a, b - 1);
+      }
+      recursion(a, b);
+
+      return result
+    }
+    */
+
+    const power = (...args) => {
+      [a, b] = args;
+
+      if( b === 0 ) return 1;
+
+      let result = 1;
+      const recursion = (a, b) => {
+        if(b === 0) return result;
+        result = result * a;
+        return recursion(a, b - 1)
+      }
+      console.log(recursion(a, b));
+    }
+    console.log(
+      power(2,2),
+      power(2,4), 
+    )
+
+    // 마지막에 리턴값이 반환되면서, 그제서야 함수값의 return 이 숫자가 된다;
+    // 1번째 return 은 종료조건이 반드시 있어야 한다
+    // 2번째 return 은 함수를 실행해야한다
+    function sumRange(num) {
+      if(num === 1) return 1;
+      return num + sumRange(num - 1);
+    }
+    
+    // console.log(
+    //   sumRange(3)
+    // )
+
+  </script>
+</body>
+</html>

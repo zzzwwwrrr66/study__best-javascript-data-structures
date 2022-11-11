@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naive String Search</title>
+</head>
+<body>
+  <h1>Naive String Search</h1>
+  <p>1. 무작위 string 을 loop 한다</p>
+  <p>2. 첫번째의 해당하는 문자열을 발견했을때 찾는 문자열만큼 연속으로 loop를 돌면서 맞는지 찾는다</p>
+  <p>3. 찾은만큼 count 추가 </p>
+  <p>4. 계속 반복하다가, 무작위 string loop length 만큼오면 return</p>
+
+  <script>
+    const str = "poweromglowl ongomgmlove";
+    function naiveStringSearch(str, elem) {
+      let count = 0;
+      for(let i = 0; i < str.length; i++) {
+        if(str[i] === elem[0]) {
+          for(let j = 1; j < elem.length; j++) {
+            if(str[i+j] !== elem[j]) break; 
+
+            if(j === elem.length - 1) count = count + 1;
+          }
+        }
+      }
+      return count;
+    }
+
+    console.log(naiveStringSearch(str, "pop"))
+  </script>
+</body>
+</html>

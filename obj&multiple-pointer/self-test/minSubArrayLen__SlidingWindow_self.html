@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sliding Window - minSubArrayLen</title>
+</head>
+<body>
+  <p>Write a function called minSubArrayLen which accepts two parameters - an array of positive integers and a positive integer.</p>
+  <p>2개의 인수를 받는 minSubArrayLen 의 함수를 작성 - 양의 숫자의 배열과 숫자 값을 받는다</p>
+
+  <p>This function should return the minimal length of a contiguous subarray of which the sum is greater than or equal to the integer passed to the function. 
+    If there isn't one, return 0 instead.</p>
+  <p>
+    원래 array의 값이 있는 contiguous subarray length 를 return 해야한다  <br/>
+    value 의 합이 2번째 인수와 크거나 같은 values 의 가장작은 return subarray.length;   <br/>
+    없을경우 2번째 인수보다 큰값을 반환  <br/>
+    해당이 없는 경우 return 0; 
+  </p>
+  <p>
+    Examples:  <br/>
+
+    minSubArrayLen([2,3,1,2,4,3], 7) // 2 -> because [4,3] is the smallest subarray  <br/>
+    minSubArrayLen([2,1,6,5,4], 9) // 2 -> because [5,4] is the smallest subarray  <br/>
+    minSubArrayLen([3,1,7,11,2,9,8,21,62,33,19], 52) // 1 -> because [62] is greater than 52  <br/>
+    minSubArrayLen([1,4,16,22,5,7,8,9,10],39) // 3  <br/>
+    minSubArrayLen([1,4,16,22,5,7,8,9,10],55) // 5  <br/>
+    minSubArrayLen([4, 3, 3, 8, 1, 2, 3], 11) // 2  <br/>
+    minSubArrayLen([1,4,16,22,5,7,8,9,10],95) // 0
+  </p>
+
+  <p>
+    Time Complexity - O(n)   <br/>
+    Space Complexity - O(1)
+  </p>
+
+
+<script>
+  /*
+    1. 내 방식의 문제파악
+    2. 에러, 유효하지않은 패턴 작성 
+    3. 문제들의 세분화 
+    4. 어려운 문제가 있으면 일단 건너뛰고, 간단한 문제부터 해결
+    5. 리팩토링
+  */
+  function minSubArrayLen(nums, sum) {
+  
+  
+
+  // startIndex, endIndex 
+  // totalNum, minLength
+  let startIndex = 0;
+  let endIndex = 0;
+  let minLength = Infinity;
+  let totalNum = 0;
+  while (startIndex < nums.length) {
+    // if total 이 num 보다 작을 때
+    if(totalNum < sum && endIndex < nums.length) {
+      totalNum+=nums[endIndex];
+      endIndex++;
+    }
+    // if total 이 num 보다 크거나 같을때
+    // 
+    else if (totalNum >= sum && startIndex < nums.length) {
+      minLength = Math.min(minLength, endIndex - startIndex); 
+      totalNum-=nums[startIndex];
+      startIndex++;
+    }
+    else {
+      break;
+    }
+  }
+  
+  return minLength === Infinity ? 0 : minLength;
+}
+
+console.log(minSubArrayLen([1,4,16,22,5,7,8,9,10],39))
+</script>
+</body>
+</html>

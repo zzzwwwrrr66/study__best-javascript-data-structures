@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>algorithm_study</title>
+</head>
+<body>
+  <p>객체 바스켓에 카운트를 담는다 </p>
+  <script>
+    // frequency_counter 빈도수 세기
+
+    // arr, arr2 loop for each -> {for of} for array
+    function frequencyCounterObj(arr) {
+      const result = {};
+      for(const v of arr) {
+        // 키값은 원래의 값(대문자->소문자)
+        const chr = v.toLowerCase();
+        // 루프를 돌면서 객체를 만든다,
+        // value 는 카운터
+        if(!result[chr]) result[chr] = 1;
+        else result[chr]++;
+      }
+      return result;
+    }
+
+    // obj1의 loop 를 돌면서 obj2의 카운터와 일치하는지 확인한다
+    // if loop 중간에 값이 틀리면 flase
+    function isSameObj (obj1, obj2) {
+      for(const property in obj1) {
+        if(obj1[property] !== obj2[property]) return false;
+      }
+    }
+
+    function validAnagram(arr1, arr2) {
+      // # two array & 문자열이 순서와 상관없이 같은지 비교한다. (Compare with both String in any order)
+      // if diff length => false 
+      if(arr1.length !== arr2.length) return false;
+      // if same array length && value is blank
+      if(arr1.length < 1 && arr2.length < 1) return true;
+
+      // arr, arr2 to obj1 & obj2
+      const obj1 = frequencyCounterObj(arr1);
+      const obj2 = frequencyCounterObj(arr2);;
+
+      // compare with obj1,obj2
+      if(!isSameObj(obj1, obj2)) return false;
+      // if loop를 다돌면 true
+      return true
+    }
+
+    console.log(
+    validAnagram('', ''), // true
+    validAnagram('aaz', 'zza'), // false
+    validAnagram('anagram', 'nagaram'), // true
+    validAnagram("rat","car"), // false
+    validAnagram('awesome', 'awesom'), // false
+    validAnagram('amanaplanacanalpanama', 'acanalmanplanpamana'), // false
+    validAnagram('qwerty', 'qeywrt'), // true
+    validAnagram('texttwisttime', 'timetwisttext'), // true
+    )
+  </script>
+
+  <!-- <script>
+    // #2
+    function validAnagram(first, second) {
+  if (first.length !== second.length) {
+    return false;
+  }
+
+  const lookup = {};
+
+  for (let i = 0; i < first.length; i++) {
+    let letter = first[i];
+    // if letter exists, increment, otherwise set to 1
+    lookup[letter] ? lookup[letter] += 1 : lookup[letter] = 1;
+  }
+  console.log(lookup)
+
+  for (let i = 0; i < second.length; i++) {
+    let letter = second[i];
+    // can't find letter or letter is zero then it's not an anagram
+    if (!lookup[letter]) {
+      return false;
+    } else {
+      lookup[letter] -= 1;
+    }
+  }
+
+  return true;
+}
+
+// {a: 0, n: 0, g: 0, r: 0, m: 0,s:1}
+console.log(validAnagram('anagrams', 'nagaramm'), validAnagram('', ''));
+  </script> -->
+</body>
+</html>

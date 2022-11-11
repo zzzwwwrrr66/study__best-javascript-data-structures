@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>reverse</title>
+</head>
+<body>
+  <p>Write a recursive function called reverse which accepts a string and returns a new string in reverse.</p>
+
+  <p id="result"></p>
+  <script>
+    function reverse(str){
+      const arr = [...str];
+      const result = [];
+      // add whatever parameters you deem necessary - good luck!
+      function helper(arr) {
+        if(arr.length === 0) return;
+        result.push(arr.pop());
+        helper(arr);
+      }
+      helper(arr);
+
+      return result.join('');
+    }
+  
+    let _text = '';
+    _text += reverse('awesome') + '\n';
+    _text += reverse('rithmschool') + '\n';
+    document.getElementById('result').textContent = _text
+  </script>
+  
+</body>
+</html>

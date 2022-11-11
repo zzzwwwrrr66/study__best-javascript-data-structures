@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sliding Window</title>
+</head>
+<body>
+  <p>num 만큼 숫자를 더해서 arr 중에 그중 가장 높은 숫자를 구한다</p>
+  <script>
+    // num 만큼 숫자를 더해서 arr 중에 그중 가장 높은 숫자를 구한다
+    function slidingWindow (arr, num) {
+      // num 보다 length 가 작으면 return null
+      if(arr.length < num) return null;
+      // temp(Temporary) 임시, max 가장 큰숫자
+      let max = 0;
+      let temp = 0;
+
+      //1. 첫번째 합을돌린다 num 기준
+      for(let i = 0; i < num; i++) {
+        max = max + arr[i];
+      }
+      temp = max;
+      console.log('1. 첫번째 합을돌린다 num 기준',max)
+      //2. arr 루프를 돌리면면서 전숫자 - 합한숫자 + 다음숫자 
+      for(let i = num; i < arr.length; i++) {
+        debugger
+        temp = temp - arr[i - num] + arr[i];
+        // if temp 가 Nan 이 아닐때만 
+        if(temp > -Infinity) {
+          // Math.max(num, num) 숫자 비교, 높은걸 리턴 
+          max = Math.max(temp, max)
+        }
+      }
+
+      console.log('2. arr 루프를 돌리면면서 전숫자 - 합한숫자 + 다음숫자 ', max)
+
+    }
+
+    slidingWindow([55,2,13,11,22], 2);
+  </script>
+  
+</body>
+</html>
