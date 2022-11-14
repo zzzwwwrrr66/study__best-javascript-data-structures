@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selection Sort</title>
+</head>
+<body>
+  <p>O(n^2)</p>
+  <p>1. 최소값의 인덱스를 찾고 마지막까지 가서 최소값을 idx[0] 으로 바꾼다 그럼다시 idx1~번부터 반복</p>
+  <p>2. 불필요한 loop를 돌때를 생각한다  if(i !== minNumIdx) 부분</p>
+  <p>3. 버블과 비교했을때 swap 을 조금사용하여 메모리를 줄일 상황이면 선택정렬이 좋다(거의 거의 없음)</p>
+
+  <script>
+
+    function swap(arr, idx1, idx2) {
+      const temp = arr[idx1];
+      arr[idx1] = arr[idx2];
+      arr[idx2] = temp;
+      return arr;
+    }
+
+    function selectionSort(arr) {
+      if(arr.length === 0) return arr;
+
+      let result = arr;
+      for(let i = 0; i < arr.length; i++) {
+        // loop 마다 minNumIdx 를 첫 index로 저장
+        let minNumIdx = i;
+        for(let j = i + 1; j < arr.length; j++) {
+          if(result[j] < result[minNumIdx] ) minNumIdx = j;
+        }
+        if(i !== minNumIdx) result = swap(arr, i, minNumIdx);
+      }
+
+      return result;
+    }
+
+    console.log(
+      selectionSort([4,1,2,3, -1])
+    )
+
+
+  </script>
+</body>
+</html>
