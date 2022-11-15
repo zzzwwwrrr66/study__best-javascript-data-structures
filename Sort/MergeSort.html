@@ -10,8 +10,10 @@
   <p>O(n log n)</p>
   <p>1. 재귀로 flat(arr.slice) 한후, 2개의 정렬된 배열을 1개의 배열로 정렬하고, 병합한다</p>
   <p>2. 속도가 빠르다</p>
+  <p>새로운 reuslt 배열을 만들고, 전부 분열한후 정렬할때 새로운 result 에 push </p>
 
   <script>
+    // 병합 함수를 먼저 작성 
     function merge(arr1, arr2) {
       let results = [];
       let i = 0;
