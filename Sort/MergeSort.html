@@ -7,38 +7,45 @@
   <title>Merge sort / 합병 정렬</title>
 </head>
 <body>
-  <p>O(n log)</p>
-  <p>1. 재귀로 flat(arr.slice) 한후, 정렬하고, 병합한다</p>
+  <p>O(n log n)</p>
+  <p>1. 재귀로 flat(arr.slice) 한후, 2개의 정렬된 배열을 1개의 배열로 정렬하고, 병합한다</p>
   <p>2. 속도가 빠르다</p>
 
   <script>
-    const arr = [100, 2, 1, 3,4];
-
-
-    function flat(arr) {
-      
-      let middle = Math.floor(arr.length / 2);
-      let m = arr.slice(0, middle);
-      let n = arr.slice(middle);
-      const result = [];
-
-      if(n.length === 1 || m.length === 1) {
-        
+    function merge(arr1, arr2) {
+      let results = [];
+      let i = 0;
+      let j = 0;
+      while(i < arr1.length && j < arr2.length){
+        if(arr2[j] > arr1[i]){
+          results.push(arr1[i]);
+          i++;
+        } else {
+          results.push(arr2[j])
+          j++;
+        }
       }
-
-      
-
-      
-      result.push(m)
-      result.push(n)
-      console.log(result);
+      while(i < arr1.length) {
+        results.push(arr1[i])
+        i++;
+      }
+      while(j < arr2.length) {
+        results.push(arr2[j])
+        j++;
+      }
+      return results;
     }
+
     function mergeSort(arr) {
-      flat(arr);
-
+      if(arr.length <= 1) return arr;
+      let mid = Math.floor(arr.length / 2);
+      let m = mergeSort(arr.slice(0, mid));
+      let n = mergeSort(arr.slice(mid));
+      return merge(m, n);
     }
-
-    mergeSort(arr);
+    console.log(
+      mergeSort([100, 2, 1, 3])
+    )
   </script>
 </body>
 </html>
