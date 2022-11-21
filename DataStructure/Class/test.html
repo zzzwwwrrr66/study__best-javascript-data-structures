@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Basic</title>
+</head>
+<body>
+  <h1>Class</h1>
+  <p>JS는 객체지향의 정확한 기능을 제공하지 않는다, 단순히 prototype을 class 문법으로 눈속임한것</p>
+  <p>instance 란 객체들을 생성하기 위해 만드는 class</p>
+  <p>new 로 인스턴스 생성이 가능</p>
+  <p>class 안의 constructor(생성자) 함수는, class 가 생성될때 내부에서 자동으로 실행되는 함수</p>
+  <p>인스턴스란 클래스의 정의를 통해 만들어진 객체를 의미하는 것</p>
+  <script>
+    class Node {
+      constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName
+      }
+
+      static zzz() { // 생성자의 메소드, 인스턴스와는 관계없는 유틸리티 메소드, 다른 class 생성시 extends 받았을 경우에는 사용가능
+        return `static zzz`;
+      }
+      
+      firstNameHandler() { // 일반 메소드
+        return `your first name is ${this.firstName}`;
+      }
+
+      
+    }
+    
+
+    function asd () {
+      return;
+    }
+
+    const a = new Node('cho', 'wooram');
+
+    console.log(a);
+    console.log(a.firstNameHandler(), 
+    );
+    console.log(typeof asd.a);
+    console.log(Node.zzz());
+
+
+
+
+    class Test extends Node {
+
+    }
+
+    console.log(Test.zzz());
+  </script>
+</body>
+</html>
